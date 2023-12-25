@@ -9,12 +9,16 @@ std::string enter_number() {
 }
 
 int converter(std::string x, std::string sign, std::string y) {
-    std::cout << "flag";
+    
     int x_con = std::stoi(x);
-    int sign_con = std::stoi(sign);
+    std::cout << "x =" << x_con << ":" << std::endl;
+
+    std::string sign_con = sign;
+    std::cout << "sign =" << sign_con << ":" << std::endl;
+
     int y_con = std::stoi(y);
-    std::cout << 2 + 2;
-    std::cout << x_con + y_con;
+    std::cout << "y =" << y_con << ":" << std::endl;
+
     return 0;
 }
 
