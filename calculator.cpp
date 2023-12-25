@@ -7,7 +7,7 @@
 std::string enter_number() {
     std::string text;
     std::cout << "number format e.g.: x + y" << std::endl;
-    std::cin >> text;
+    std::getline(std::cin,text);
     return text;
 }
 
