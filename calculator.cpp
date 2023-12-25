@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <sstream>
 
 std::string enter_number() {
     std::string text;
@@ -20,6 +22,7 @@ int sign_fun(std::string sign) {
     } else if (sign_re == "/") {
         return 4;
     }
+    return 0;
 }
 
 int simple_algorithms(int x, std::string sign, int y) {
@@ -28,23 +31,23 @@ int simple_algorithms(int x, std::string sign, int y) {
     switch (sign_fun(sign))
     {
     case 1:
-        std::cout << x_re + y_re;
+        std::cout << "=" << x_re + y_re;
         break;
     case 2:
-        std::cout << x_re - y_re;
+        std::cout << "=" << x_re - y_re;
         break;
     case 3:
-        std::cout << x_re * y_re;
+        std::cout << "=" << x_re * y_re;
         break;
     case 4:
         if(y_re == 0) {
             std::cout << "cannot be divided by zero" << std::endl;
         } else {
-            std::cout << x_re / y_re;
+            std::cout << "=" << x_re / y_re;
         }
         break;
-    return 0;
     }
+    return 0;
 }
 
 int converter(std::string x, std::string sign, std::string y) {
@@ -63,18 +66,23 @@ int converter(std::string x, std::string sign, std::string y) {
 }
 
 std::string separation(std::string text) {
-    std::string text_con = text;
 
-    std::string x = text_con.substr(0, 1);
-    std::cout << "x =" << x << ":" << std::endl;
+    struct Expression {
+    std::string x;
+    std::string sign;
+    std::string y;
+    };
 
-    std::string sign = text_con.substr(2, 1);
-    std::cout << "sign =" << sign << ":" << std::endl;
+    std::string input = text;
+    std::istringstream iss(input);
+    std::vector<Expression> expressions;
 
-    std::string y = text_con.substr(4, 4);
-    std::cout << "y =" << y << ":" << std::endl;
+    Expression exp;
+    while (iss >> exp.x >> exp.sign >> exp.y) {
+        expressions.push_back(exp);
+    }
 
-    converter(x,sign,y);
+    converter(exp.x, exp.sign, exp.y);
     return 0;
 }
 
